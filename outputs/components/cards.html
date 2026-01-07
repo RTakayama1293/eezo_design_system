@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EEZO Design System - Cards</title>
+  <link rel="stylesheet" href="../design_system/design_tokens.css">
+  <style>
+    .components-page {
+      padding: var(--spacing-2xl) 0;
+    }
+
+    .component-section {
+      margin-bottom: var(--spacing-3xl);
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-xl);
+      color: var(--eezo-navy);
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-sm);
+      border-bottom: 2px solid var(--eezo-gold);
+    }
+
+    .section-description {
+      color: var(--eezo-gray-600);
+      margin-bottom: var(--spacing-xl);
+      max-width: 700px;
+    }
+
+    /* Page Header */
+    .page-header {
+      background: var(--eezo-navy);
+      color: var(--eezo-white);
+      padding: var(--spacing-3xl) 0;
+      margin-bottom: var(--spacing-3xl);
+    }
+
+    .page-header h1 {
+      color: var(--eezo-white);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .page-header p {
+      color: var(--eezo-gold-light);
+      font-size: var(--font-size-lg);
+      margin: 0;
+    }
+
+    /* Card Grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--spacing-xl);
+    }
+
+    .card-grid--2col {
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
+
+    /* Base Product Card */
+    .product-card {
+      background: var(--eezo-white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-card__image {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: var(--eezo-gray-100);
+    }
+
+    .product-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .product-card:hover .product-card__image img {
+      transform: scale(1.05);
+    }
+
+    /* Placeholder Image */
+    .product-card__image-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--eezo-cream) 0%, var(--eezo-gray-200) 100%);
+      color: var(--eezo-gray-400);
+      font-size: var(--font-size-sm);
+    }
+
+    .product-card__badge {
+      position: absolute;
+      top: var(--spacing-sm);
+      left: var(--spacing-sm);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+      border-radius: var(--radius-sm);
+    }
+
+    .product-card__badge--new {
+      background: var(--eezo-navy);
+      color: var(--eezo-white);
+    }
+
+    .product-card__badge--limited {
+      background: var(--eezo-red);
+      color: var(--eezo-white);
+    }
+
+    .product-card__badge--seasonal {
+      background: var(--eezo-gold);
+      color: var(--eezo-navy);
+    }
+
+    .product-card__favorite {
+      position: absolute;
+      top: var(--spacing-sm);
+      right: var(--spacing-sm);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--eezo-white);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .product-card__favorite:hover {
+      background: var(--eezo-cream);
+    }
+
+    .product-card__favorite svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--eezo-gray-400);
+      transition: fill var(--transition-fast);
+    }
+
+    .product-card__favorite--active svg {
+      fill: var(--eezo-red);
+    }
+
+    .product-card__content {
+      padding: var(--spacing-md);
+    }
+
+    .product-card__category {
+      font-size: var(--font-size-xs);
+      color: var(--eezo-gold);
+      font-weight: var(--font-weight-medium);
+      margin-bottom: var(--spacing-xs);
+      letter-spacing: var(--letter-spacing-wide);
+    }
+
+    .product-card__name {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-lg);
+      color: var(--eezo-navy);
+      margin-bottom: var(--spacing-xs);
+      line-height: var(--line-height-heading);
+    }
+
+    .product-card__producer {
+      font-size: var(--font-size-sm);
+      color: var(--eezo-gray-500);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .product-card__description {
+      font-size: var(--font-size-sm);
+      color: var(--eezo-gray-600);
+      line-height: var(--line-height-normal);
+      margin-bottom: var(--spacing-md);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .product-card__price {
+      font-family: var(--font-body);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-medium);
+      color: var(--eezo-navy);
+    }
+
+    .product-card__price-unit {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-normal);
+      color: var(--eezo-gray-500);
+    }
+
+    .product-card__stock {
+      font-size: var(--font-size-xs);
+      margin-top: var(--spacing-xs);
+    }
+
+    .product-card__stock--available {
+      color: var(--eezo-green);
+    }
+
+    .product-card__stock--limited {
+      color: var(--eezo-red);
+    }
+
+    /* Horizontal Card */
+    .product-card--horizontal {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+    }
+
+    .product-card--horizontal .product-card__image {
+      aspect-ratio: 1/1;
+    }
+
+    .product-card--horizontal .product-card__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Featured Card */
+    .product-card--featured {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .product-card--featured .product-card__image {
+      aspect-ratio: auto;
+    }
+
+    .product-card--featured .product-card__content {
+      padding: var(--spacing-xl);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .product-card--featured .product-card__name {
+      font-size: var(--font-size-xl);
+    }
+
+    .product-card--featured .product-card__description {
+      -webkit-line-clamp: 4;
+    }
+
+    /* Producer Card */
+    .producer-card {
+      background: var(--eezo-cream);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-xl);
+      text-align: center;
+    }
+
+    .producer-card__avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--eezo-gray-200);
+      margin: 0 auto var(--spacing-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--eezo-gray-400);
+      font-size: var(--font-size-xs);
+      overflow: hidden;
+    }
+
+    .producer-card__avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .producer-card__name {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-lg);
+      color: var(--eezo-navy);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .producer-card__location {
+      font-size: var(--font-size-sm);
+      color: var(--eezo-gray-500);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .producer-card__description {
+      font-size: var(--font-size-sm);
+      color: var(--eezo-gray-600);
+      line-height: var(--line-height-normal);
+    }
+
+    /* Category Card */
+    .category-card {
+      position: relative;
+      aspect-ratio: 16/9;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .category-card__image {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--eezo-navy) 0%, var(--eezo-navy-light) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--eezo-gray-400);
+      font-size: var(--font-size-xs);
+    }
+
+    .category-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .category-card:hover .category-card__image img {
+      transform: scale(1.1);
+    }
+
+    .category-card__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26, 42, 58, 0.9) 0%, rgba(26, 42, 58, 0.3) 50%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: var(--spacing-lg);
+    }
+
+    .category-card__name {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-xl);
+      color: var(--eezo-white);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .category-card__count {
+      font-size: var(--font-size-sm);
+      color: var(--eezo-gold-light);
+    }
+
+    /* Code Block */
+    .code-block {
+      background: var(--eezo-gray-800);
+      color: var(--eezo-gray-100);
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-family: 'Courier New', monospace;
+      font-size: var(--font-size-sm);
+      overflow-x: auto;
+      margin-top: var(--spacing-md);
+    }
+
+    .code-block code {
+      color: var(--eezo-gold-light);
+    }
+
+    @media (max-width: 767px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card-grid--2col {
+        grid-template-columns: 1fr;
+      }
+
+      .product-card--horizontal {
+        grid-template-columns: 1fr;
+      }
+
+      .product-card--horizontal .product-card__image {
+        aspect-ratio: 4/3;
+      }
+
+      .product-card--featured {
+        grid-column: span 1;
+        grid-template-columns: 1fr;
+      }
+
+      .product-card--featured .product-card__image {
+        aspect-ratio: 4/3;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <h1>Cards</h1>
+      <p>EEZO Design System - カードコンポーネント</p>
+    </div>
+  </header>
+
+  <main class="components-page">
+    <div class="container">
+      <!-- Standard Product Card -->
+      <section class="component-section">
+        <h2 class="section-title">Standard Product Card</h2>
+        <p class="section-description">
+          商品一覧で使用する標準的なカードです。商品画像、名前、生産者、価格を表示します。
+          ホバー時に軽いリフトエフェクトがかかります。
+        </p>
+        <div class="card-grid">
+          <!-- Card 1 -->
+          <article class="product-card">
+            <div class="product-card__image">
+              <div class="product-card__image-placeholder">商品画像 400x300</div>
+              <span class="product-card__badge product-card__badge--new">NEW</span>
+              <button class="product-card__favorite" aria-label="お気に入りに追加">
+                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              </button>
+            </div>
+            <div class="product-card__content">
+              <span class="product-card__category">海産物</span>
+              <h3 class="product-card__name">北海道産 毛がに（特大）</h3>
+              <p class="product-card__producer">宗谷漁業協同組合</p>
+              <p class="product-card__price">
+                ¥12,800<span class="product-card__price-unit">（税込）</span>
+              </p>
+              <p class="product-card__stock product-card__stock--available">在庫あり</p>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="product-card">
+            <div class="product-card__image">
+              <div class="product-card__image-placeholder">商品画像 400x300</div>
+              <span class="product-card__badge product-card__badge--limited">数量限定</span>
+              <button class="product-card__favorite product-card__favorite--active" aria-label="お気に入りから削除">
+                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              </button>
+            </div>
+            <div class="product-card__content">
+              <span class="product-card__category">乳製品</span>
+              <h3 class="product-card__name">十勝産 熟成チーズセット</h3>
+              <p class="product-card__producer">十勝しんむら牧場</p>
+              <p class="product-card__price">
+                ¥4,500<span class="product-card__price-unit">（税込）</span>
+              </p>
+              <p class="product-card__stock product-card__stock--limited">残り3点</p>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="product-card">
+            <div class="product-card__image">
+              <div class="product-card__image-placeholder">商品画像 400x300</div>
+              <span class="product-card__badge product-card__badge--seasonal">旬</span>
+              <button class="product-card__favorite" aria-label="お気に入りに追加">
+                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              </button>
+            </div>
+            <div class="product-card__content">
+              <span class="product-card__category">野菜</span>
+              <h3 class="product-card__name">富良野産 アスパラガス（2L）</h3>
+              <p class="product-card__producer">富良野ベジタブルファーム</p>
+              <p class="product-card__price">
+                ¥3,200<span class="product-card__price-unit">（税込）</span>
+              </p>
+              <p class="product-card__stock product-card__stock--available">在庫あり</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Card with Description -->
+      <section class="component-section">
+        <h2 class="section-title">Card with Description</h2>
+        <p class="section-description">
+          説明文付きのカードです。商品のストーリーや特徴を伝えたい場合に使用します。
+        </p>
+        <div class="card-grid">
+          <article class="product-card">
+            <div class="product-card__image">
+              <div class="product-card__image-placeholder">商品画像 400x300</div>
+            </div>
+            <div class="product-card__content">
+              <span class="product-card__category">海産物</span>
+              <h3 class="product-card__name">利尻産 天然昆布</h3>
+              <p class="product-card__producer">利尻漁業協同組合</p>
+              <p class="product-card__description">
+                利尻島の冷たく澄んだ海で育った天然昆布。上品な甘みと深い旨味が特徴で、高級料亭でも愛用されています。
+              </p>
+              <p class="product-card__price">
+                ¥5,400<span class="product-card__price-unit">（税込）</span>
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Horizontal Card -->
+      <section class="component-section">
+        <h2 class="section-title">Horizontal Card</h2>
+        <p class="section-description">
+          横長レイアウトのカードです。カート内の商品表示や、検索結果のリスト表示に適しています。
+        </p>
+        <div class="card-grid card-grid--2col">
+          <article class="product-card product-card--horizontal">
+            <div class="product-card__image">
+              <div class="product-card__image-placeholder">200x200</div>
+            </div>
+            <div class="product-card__content">
+              <span class="product-card__category">加工品</span>
+              <h3 class="product-card__name">小樽産 燻製セット</h3>
+              <p class="product-card__producer">小樽燻製工房</p>
+              <p class="product-card__description">
+                サーモン、ホタテ、たこの3種の燻製詰め合わせ。ワインのお供に最適です。
+              </p>
+              <p class="product-card__price">
+                ¥4,800<span class="product-card__price-unit">（税込）</span>
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Featured Card -->
+      <section class="component-section">
+        <h2 class="section-title">Featured Card</h2>
+        <p class="section-description">
+          おすすめ商品や特集商品を大きく見せたい場合に使用します。
+          2カラム分の幅を使用し、インパクトのある表示が可能です。
+        </p>
+        <div class="card-grid">
+          <article class="product-card product-card--featured">
+            <div class="product-card__image">
+              <div class="product-card__image-placeholder">商品画像 600x400</div>
+            </div>
+            <div class="product-card__content">
+              <span class="product-card__category">今月のおすすめ</span>
+              <h3 class="product-card__name">北海道プレミアムセット</h3>
+              <p class="product-card__producer">EEZO厳選</p>
+              <p class="product-card__description">
+                北海道の旬を詰め込んだ特別なセットです。毛がに、いくら、ホタテ、十勝牛など、
+                北の大地と海の恵みを一度にお楽しみいただけます。大切な方への贈り物に最適です。
+              </p>
+              <p class="product-card__price">
+                ¥25,000<span class="product-card__price-unit">（税込・送料無料）</span>
+              </p>
+              <p class="product-card__stock product-card__stock--limited">残り5セット</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Producer Card -->
+      <section class="component-section">
+        <h2 class="section-title">Producer Card</h2>
+        <p class="section-description">
+          生産者を紹介するカードです。生産者のストーリーを伝え、信頼感を醸成します。
+        </p>
+        <div class="card-grid">
+          <article class="producer-card">
+            <div class="producer-card__avatar">生産者写真</div>
+            <h3 class="producer-card__name">田中 太郎</h3>
+            <p class="producer-card__location">北海道 富良野市</p>
+            <p class="producer-card__description">
+              30年以上にわたり有機農法でアスパラガスを栽培。土づくりからこだわり、
+              野菜本来の甘みを引き出す農法を実践しています。
+            </p>
+          </article>
+
+          <article class="producer-card">
+            <div class="producer-card__avatar">生産者写真</div>
+            <h3 class="producer-card__name">鈴木 花子</h3>
+            <p class="producer-card__location">北海道 十勝郡</p>
+            <p class="producer-card__description">
+              牧場を継いで20年。牛たちのストレスを最小限に抑える放牧酪農を行い、
+              濃厚で風味豊かな乳製品を作り続けています。
+            </p>
+          </article>
+
+          <article class="producer-card">
+            <div class="producer-card__avatar">生産者写真</div>
+            <h3 class="producer-card__name">佐藤 一郎</h3>
+            <p class="producer-card__location">北海道 稚内市</p>
+            <p class="producer-card__description">
+              三代続く漁師の家系。日本最北端の海で獲れる新鮮な魚介類を、
+              鮮度を保ったまま全国へお届けしています。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Category Card -->
+      <section class="component-section">
+        <h2 class="section-title">Category Card</h2>
+        <p class="section-description">
+          カテゴリー選択用のカードです。画像の上にオーバーレイでカテゴリー名を表示します。
+        </p>
+        <div class="card-grid">
+          <article class="category-card">
+            <div class="category-card__image">カテゴリー画像</div>
+            <div class="category-card__overlay">
+              <h3 class="category-card__name">海産物</h3>
+              <span class="category-card__count">128商品</span>
+            </div>
+          </article>
+
+          <article class="category-card">
+            <div class="category-card__image">カテゴリー画像</div>
+            <div class="category-card__overlay">
+              <h3 class="category-card__name">野菜・果物</h3>
+              <span class="category-card__count">86商品</span>
+            </div>
+          </article>
+
+          <article class="category-card">
+            <div class="category-card__image">カテゴリー画像</div>
+            <div class="category-card__overlay">
+              <h3 class="category-card__name">乳製品</h3>
+              <span class="category-card__count">42商品</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Usage Code -->
+      <section class="component-section">
+        <h2 class="section-title">Usage</h2>
+        <div class="code-block">
+          <code>&lt;article class="product-card"&gt;
+  &lt;div class="product-card__image"&gt;
+    &lt;img src="..." alt="商品名"&gt;
+    &lt;span class="product-card__badge product-card__badge--new"&gt;NEW&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="product-card__content"&gt;
+    &lt;span class="product-card__category"&gt;カテゴリー&lt;/span&gt;
+    &lt;h3 class="product-card__name"&gt;商品名&lt;/h3&gt;
+    &lt;p class="product-card__producer"&gt;生産者名&lt;/p&gt;
+    &lt;p class="product-card__price"&gt;
+      ¥12,800&lt;span class="product-card__price-unit"&gt;（税込）&lt;/span&gt;
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

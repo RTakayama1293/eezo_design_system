@@ -1,0 +1,275 @@
+/**
+ * EEZO Design System - Design Tokens
+ * 北海道食材ECサイト「EEZO」のデザイントークン定義
+ *
+ * 「現代の北前船」- 格式、温もり、信頼、洗練
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap');
+
+:root {
+  /* =============================================
+   * Colors - Primary
+   * ============================================= */
+  --eezo-navy: #1a2a3a;
+  --eezo-navy-light: #2d4a5e;
+  --eezo-navy-dark: #0f1a24;
+  --eezo-gold: #c9a962;
+  --eezo-gold-light: #e5d4a8;
+  --eezo-gold-dark: #a68b4b;
+
+  /* =============================================
+   * Colors - Neutral
+   * ============================================= */
+  --eezo-cream: #f8f5ef;
+  --eezo-white: #ffffff;
+  --eezo-gray-100: #f5f5f5;
+  --eezo-gray-200: #e8e8e8;
+  --eezo-gray-300: #d1d1d1;
+  --eezo-gray-400: #b0b0b0;
+  --eezo-gray-500: #888888;
+  --eezo-gray-600: #666666;
+  --eezo-gray-700: #4a4a4a;
+  --eezo-gray-800: #333333;
+  --eezo-gray-900: #1a1a1a;
+
+  /* =============================================
+   * Colors - Semantic
+   * ============================================= */
+  --eezo-red: #c44536;
+  --eezo-red-light: #e57366;
+  --eezo-green: #3d7c47;
+  --eezo-green-light: #5a9d65;
+
+  /* =============================================
+   * Typography - Font Families
+   * ============================================= */
+  --font-heading: 'Noto Serif JP', serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+
+  /* =============================================
+   * Typography - Font Sizes
+   * ============================================= */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 0.9375rem; /* 15px */
+  --font-size-md: 1rem;       /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.5rem;     /* 24px */
+  --font-size-2xl: 2rem;      /* 32px */
+  --font-size-3xl: 2.25rem;   /* 36px */
+  --font-size-4xl: 3rem;      /* 48px */
+
+  /* =============================================
+   * Typography - Font Weights
+   * ============================================= */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* =============================================
+   * Typography - Line Heights
+   * ============================================= */
+  --line-height-tight: 1.2;
+  --line-height-heading: 1.4;
+  --line-height-normal: 1.6;
+  --line-height-relaxed: 2.0;
+
+  /* =============================================
+   * Typography - Letter Spacing
+   * ============================================= */
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.05em;
+  --letter-spacing-wider: 0.1em;
+
+  /* =============================================
+   * Spacing
+   * ============================================= */
+  --spacing-0: 0;
+  --spacing-xs: 0.25rem;   /* 4px */
+  --spacing-sm: 0.5rem;    /* 8px */
+  --spacing-md: 1rem;      /* 16px */
+  --spacing-lg: 1.5rem;    /* 24px */
+  --spacing-xl: 2rem;      /* 32px */
+  --spacing-2xl: 3rem;     /* 48px */
+  --spacing-3xl: 4rem;     /* 64px */
+  --spacing-4xl: 6rem;     /* 96px */
+
+  /* =============================================
+   * Border Radius
+   * ============================================= */
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
+
+  /* =============================================
+   * Border Width
+   * ============================================= */
+  --border-width-thin: 1px;
+  --border-width-normal: 2px;
+  --border-width-thick: 3px;
+
+  /* =============================================
+   * Shadows
+   * ============================================= */
+  --shadow-sm: 0 1px 2px rgba(26, 42, 58, 0.05);
+  --shadow-md: 0 4px 6px rgba(26, 42, 58, 0.07);
+  --shadow-lg: 0 10px 15px rgba(26, 42, 58, 0.1);
+  --shadow-xl: 0 20px 25px rgba(26, 42, 58, 0.12);
+
+  /* =============================================
+   * Transitions
+   * ============================================= */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 350ms ease;
+
+  /* =============================================
+   * Z-Index Scale
+   * ============================================= */
+  --z-behind: -1;
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+
+  /* =============================================
+   * Breakpoints (for reference)
+   * ============================================= */
+  --breakpoint-mobile: 380px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+  --breakpoint-wide: 1200px;
+
+  /* =============================================
+   * Container
+   * ============================================= */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1200px;
+  --container-padding: var(--spacing-md);
+}
+
+/* =============================================
+ * Base Reset & Typography
+ * ============================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-relaxed);
+  color: var(--eezo-gray-700);
+  background-color: var(--eezo-white);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-normal);
+  letter-spacing: var(--letter-spacing-wide);
+  line-height: var(--line-height-heading);
+  color: var(--eezo-navy);
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+h1 {
+  font-size: var(--font-size-3xl);
+}
+
+h2 {
+  font-size: var(--font-size-xl);
+}
+
+h3 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+}
+
+p {
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+a {
+  color: var(--eezo-navy);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--eezo-gold);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =============================================
+ * Utility Classes
+ * ============================================= */
+.container {
+  width: 100%;
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.text-navy { color: var(--eezo-navy); }
+.text-gold { color: var(--eezo-gold); }
+.text-gray { color: var(--eezo-gray-500); }
+.text-white { color: var(--eezo-white); }
+
+.bg-navy { background-color: var(--eezo-navy); }
+.bg-gold { background-color: var(--eezo-gold); }
+.bg-cream { background-color: var(--eezo-cream); }
+.bg-white { background-color: var(--eezo-white); }
+
+.font-heading { font-family: var(--font-heading); }
+.font-body { font-family: var(--font-body); }
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+/* =============================================
+ * Responsive Utilities
+ * ============================================= */
+@media (max-width: 767px) {
+  :root {
+    --font-size-3xl: 1.75rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-xl: 1.25rem;
+    --container-padding: var(--spacing-md);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --container-padding: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-padding: var(--spacing-xl);
+  }
+}
