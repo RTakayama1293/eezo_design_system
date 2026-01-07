@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EEZO Design System v1.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* === カラーパレット === */
+            --eezo-navy: #1a2a3a;
+            --eezo-navy-light: #2d4a5e;
+            --eezo-gold: #c9a962;
+            --eezo-gold-light: #e5d4a8;
+            --eezo-cream: #f8f5ef;
+            --eezo-white: #ffffff;
+            --eezo-gray-100: #f5f5f5;
+            --eezo-gray-300: #d1d1d1;
+            --eezo-gray-500: #888888;
+            --eezo-gray-700: #4a4a4a;
+            --eezo-red: #c44536;
+            --eezo-green: #3d7c47;
+            
+            /* === タイポグラフィ === */
+            --font-heading: 'Noto Serif JP', serif;
+            --font-body: 'Noto Sans JP', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background: var(--eezo-gray-100);
+            color: var(--eezo-gray-700);
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* === ヘッダー === */
+        .ds-header {
+            background: var(--eezo-navy);
+            color: var(--eezo-white);
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        .ds-header h1 {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            margin-bottom: 16px;
+        }
+        
+        .ds-header p {
+            font-size: 14px;
+            color: var(--eezo-gold-light);
+            letter-spacing: 0.1em;
+        }
+        
+        /* === セクション === */
+        .section {
+            background: var(--eezo-white);
+            margin: 24px 0;
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            color: var(--eezo-navy);
+            border-bottom: 2px solid var(--eezo-gold);
+            padding-bottom: 12px;
+            margin-bottom: 32px;
+            display: inline-block;
+        }
+        
+        .section-subtitle {
+            font-size: 14px;
+            color: var(--eezo-gray-500);
+            margin-bottom: 24px;
+        }
+        
+        /* === 1. カラーパレット === */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+        }
+        
+        .color-swatch {
+            text-align: center;
+        }
+        
+        .color-box {
+            height: 80px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 8px;
+            font-size: 11px;
+            font-family: monospace;
+        }
+        
+        .color-name {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .color-usage {
+            font-size: 11px;
+            color: var(--eezo-gray-500);
+        }
+        
+        /* === 2. タイポグラフィ === */
+        .typo-sample {
+            margin-bottom: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--eezo-gray-100);
+        }
+        
+        .typo-sample:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .typo-label {
+            font-size: 11px;
+            color: var(--eezo-gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+        
+        .typo-spec {
+            font-size: 12px;
+            color: var(--eezo-gray-500);
+            font-family: monospace;
+            margin-top: 8px;
+        }
+        
+        .h1-sample {
+            font-family: var(--font-heading);
+            font-size: 36px;
+            font-weight: 400;
+            color: var(--eezo-navy);
+            letter-spacing: 0.05em;
+        }
+        
+        .h2-sample {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--eezo-navy);
+            letter-spacing: 0.03em;
+        }
+        
+        .h3-sample {
+            font-family: var(--font-body);
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--eezo-navy);
+        }
+        
+        .body-sample {
+            font-family: var(--font-body);
+            font-size: 15px;
+            line-height: 2;
+            color: var(--eezo-gray-700);
+        }
+        
+        .caption-sample {
+            font-family: var(--font-body);
+            font-size: 12px;
+            color: var(--eezo-gray-500);
+        }
+        
+        /* === 3. ボタン === */
+        .button-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            font-size: 14px;
+            font-family: var(--font-body);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--eezo-navy);
+            color: var(--eezo-white);
+        }
+        
+        .btn-primary:hover {
+            background: var(--eezo-navy-light);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--eezo-navy);
+            border: 1px solid var(--eezo-navy);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--eezo-navy);
+            color: var(--eezo-white);
+        }
+        
+        .btn-gold {
+            background: var(--eezo-gold);
+            color: var(--eezo-navy);
+        }
+        
+        .btn-gold:hover {
+            background: var(--eezo-gold-light);
+        }
+        
+        .btn-small {
+            padding: 10px 20px;
+            font-size: 12px;
+        }
+        
+        .btn-large {
+            padding: 18px 48px;
+            font-size: 16px;
+        }
+        
+        /* === 4. 商品カード === */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        .product-card {
+            background: var(--eezo-white);
+            border: 1px solid var(--eezo-gray-100);
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transform: translateY(-4px);
+        }
+        
+        .product-image {
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, var(--eezo-cream) 0%, var(--eezo-gray-100) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--eezo-gray-300);
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--eezo-red);
+            color: var(--eezo-white);
+            font-size: 11px;
+            padding: 4px 10px;
+            letter-spacing: 0.05em;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-category {
+            font-size: 11px;
+            color: var(--eezo-gold);
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+        
+        .product-name {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            color: var(--eezo-navy);
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .product-desc {
+            font-size: 13px;
+            color: var(--eezo-gray-500);
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+        
+        .product-price {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--eezo-navy);
+        }
+        
+        .product-price span {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--eezo-gray-500);
+        }
+        
+        /* === 5. バナーテンプレート === */
+        .banner-samples {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .banner {
+            padding: 48px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .banner-hero {
+            background: linear-gradient(135deg, var(--eezo-navy) 0%, var(--eezo-navy-light) 100%);
+            color: var(--eezo-white);
+            padding: 80px 48px;
+        }
+        
+        .banner-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="80" cy="50" r="60" fill="rgba(201,169,98,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .banner-hero h2 {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        
+        .banner-hero p {
+            font-size: 14px;
+            color: var(--eezo-gold-light);
+            margin-bottom: 32px;
+            position: relative;
+        }
+        
+        .banner-promo {
+            background: var(--eezo-cream);
+            color: var(--eezo-navy);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: left;
+            padding: 32px 48px;
+        }
+        
+        .banner-promo-text h3 {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        
+        .banner-promo-text p {
+            font-size: 13px;
+            color: var(--eezo-gray-500);
+        }
+        
+        .banner-seasonal {
+            background: var(--eezo-white);
+            border: 1px solid var(--eezo-gold);
+            color: var(--eezo-navy);
+        }
+        
+        .banner-seasonal .season-label {
+            font-size: 11px;
+            color: var(--eezo-gold);
+            letter-spacing: 0.2em;
+            margin-bottom: 12px;
+        }
+        
+        .banner-seasonal h3 {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .banner-seasonal p {
+            font-size: 13px;
+            color: var(--eezo-gray-500);
+        }
+        
+        /* === 6. フォーム要素 === */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--eezo-navy);
+            margin-bottom: 8px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-family: var(--font-body);
+            border: 1px solid var(--eezo-gray-300);
+            border-radius: 2px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--eezo-navy);
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-family: var(--font-body);
+            border: 1px solid var(--eezo-gray-300);
+            border-radius: 2px;
+            background: var(--eezo-white);
+            cursor: pointer;
+        }
+        
+        /* === 7. 写真レギュレーション === */
+        .photo-guide {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+        
+        .photo-example {
+            text-align: center;
+        }
+        
+        .photo-box {
+            aspect-ratio: 4/3;
+            background: var(--eezo-gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: var(--eezo-gray-500);
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .photo-box.good {
+            border: 2px solid var(--eezo-green);
+        }
+        
+        .photo-box.bad {
+            border: 2px solid var(--eezo-red);
+        }
+        
+        .photo-label {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .photo-label.good {
+            color: var(--eezo-green);
+        }
+        
+        .photo-label.bad {
+            color: var(--eezo-red);
+        }
+        
+        .photo-desc {
+            font-size: 12px;
+            color: var(--eezo-gray-500);
+            line-height: 1.6;
+        }
+        
+        /* === 8. ページレイアウト === */
+        .layout-preview {
+            background: var(--eezo-gray-100);
+            padding: 24px;
+            border-radius: 4px;
+        }
+        
+        .layout-wireframe {
+            background: var(--eezo-white);
+            border: 1px solid var(--eezo-gray-300);
+            margin-bottom: 16px;
+        }
+        
+        .wf-header {
+            background: var(--eezo-navy);
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+        }
+        
+        .wf-logo {
+            width: 80px;
+            height: 24px;
+            background: var(--eezo-gold);
+            border-radius: 2px;
+        }
+        
+        .wf-nav {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .wf-nav-item {
+            width: 48px;
+            height: 8px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+        }
+        
+        .wf-hero {
+            height: 200px;
+            background: linear-gradient(135deg, var(--eezo-cream) 0%, var(--eezo-gray-100) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .wf-hero-title {
+            width: 200px;
+            height: 24px;
+            background: var(--eezo-gray-300);
+            border-radius: 2px;
+        }
+        
+        .wf-hero-subtitle {
+            width: 300px;
+            height: 12px;
+            background: var(--eezo-gray-300);
+            border-radius: 2px;
+        }
+        
+        .wf-section {
+            padding: 32px 24px;
+        }
+        
+        .wf-section-title {
+            width: 120px;
+            height: 16px;
+            background: var(--eezo-gray-300);
+            margin: 0 auto 24px;
+            border-radius: 2px;
+        }
+        
+        .wf-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        
+        .wf-card {
+            background: var(--eezo-gray-100);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .wf-card-image {
+            aspect-ratio: 4/3;
+            background: var(--eezo-gray-300);
+        }
+        
+        .wf-card-content {
+            padding: 12px;
+        }
+        
+        .wf-card-text {
+            height: 8px;
+            background: var(--eezo-gray-300);
+            border-radius: 2px;
+            margin-bottom: 8px;
+        }
+        
+        .wf-card-text:last-child {
+            width: 60%;
+            margin-bottom: 0;
+        }
+        
+        /* === ユーティリティ === */
+        .note {
+            background: var(--eezo-cream);
+            padding: 16px 20px;
+            border-left: 3px solid var(--eezo-gold);
+            font-size: 13px;
+            margin-top: 24px;
+        }
+        
+        .note-title {
+            font-weight: 500;
+            color: var(--eezo-navy);
+            margin-bottom: 4px;
+        }
+        
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-top: 16px;
+        }
+        
+        .spec-table th,
+        .spec-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--eezo-gray-100);
+        }
+        
+        .spec-table th {
+            background: var(--eezo-gray-100);
+            font-weight: 500;
+            color: var(--eezo-navy);
+        }
+        
+        .code {
+            font-family: monospace;
+            background: var(--eezo-gray-100);
+            padding: 2px 6px;
+            border-radius: 2px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="ds-header">
+        <h1>EEZO Design System</h1>
+        <p>Version 1.0 — 現代の北前船</p>
+    </header>
+    
+    <div class="container">
+        <!-- 1. カラーパレット -->
+        <section class="section">
+            <h2 class="section-title">1. カラーパレット</h2>
+            <p class="section-subtitle">ブランドの世界観を表現する基本色。日本海の深い藍と、北前船の金装飾をモチーフに。</p>
+            
+            <div class="color-grid">
+                <div class="color-swatch">
+                    <div class="color-box" style="background: var(--eezo-navy); color: white;">#1a2a3a</div>
+                    <div class="color-name">EEZO Navy</div>
+                    <div class="color-usage">メインカラー / 見出し / ヘッダー</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: var(--eezo-gold); color: var(--eezo-navy);">#c9a962</div>
+                    <div class="color-name">EEZO Gold</div>
+                    <div class="color-usage">アクセント / CTA / 強調</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: var(--eezo-cream); color: var(--eezo-gray-700);">#f8f5ef</div>
+                    <div class="color-name">EEZO Cream</div>
+                    <div class="color-usage">背景 / セクション区切り</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: var(--eezo-gray-700); color: white;">#4a4a4a</div>
+                    <div class="color-name">Text Primary</div>
+                    <div class="color-usage">本文テキスト</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: var(--eezo-gray-500); color: white;">#888888</div>
+                    <div class="color-name">Text Secondary</div>
+                    <div class="color-usage">補足テキスト / キャプション</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: var(--eezo-red); color: white;">#c44536</div>
+                    <div class="color-name">Accent Red</div>
+                    <div class="color-usage">セール / 限定 / エラー</div>
+                </div>
+            </div>
+            
+            <div class="note">
+                <div class="note-title">使用ルール</div>
+                Navy と Gold の組み合わせを基調とし、Cream は背景として使用。Red は限定的に使用し、安売り感を出さない。
+            </div>
+        </section>
+        
+        <!-- 2. タイポグラフィ -->
+        <section class="section">
+            <h2 class="section-title">2. タイポグラフィ</h2>
+            <p class="section-subtitle">見出しは明朝体で格式を、本文はゴシック体で可読性を確保。</p>
+            
+            <div class="typo-sample">
+                <div class="typo-label">Heading 1 — ページタイトル</div>
+                <div class="h1-sample">北の大地と海が育む旬を、匠の元へ</div>
+                <div class="typo-spec">Noto Serif JP / 36px / font-weight: 400 / letter-spacing: 0.05em</div>
+            </div>
+            
+            <div class="typo-sample">
+                <div class="typo-label">Heading 2 — セクションタイトル</div>
+                <div class="h2-sample">今週のおすすめ商品</div>
+                <div class="typo-spec">Noto Serif JP / 24px / font-weight: 400 / letter-spacing: 0.03em</div>
+            </div>
+            
+            <div class="typo-sample">
+                <div class="typo-label">Heading 3 — 商品名・小見出し</div>
+                <div class="h3-sample">羅臼産 天然キンキ（めんめ）</div>
+                <div class="typo-spec">Noto Sans JP / 18px / font-weight: 500</div>
+            </div>
+            
+            <div class="typo-sample">
+                <div class="typo-label">Body — 本文</div>
+                <div class="body-sample">北海道の雄大な自然が育んだ食材を、新日本海フェリーの物流網を活かし、鮮度そのままにお届けします。産地直送の確かな品質と、生産者の想いを込めた逸品をご堪能ください。</div>
+                <div class="typo-spec">Noto Sans JP / 15px / font-weight: 400 / line-height: 2.0</div>
+            </div>
+            
+            <div class="typo-sample">
+                <div class="typo-label">Caption — キャプション・補足</div>
+                <div class="caption-sample">※写真はイメージです。季節により内容が変更になる場合があります。</div>
+                <div class="typo-spec">Noto Sans JP / 12px / color: #888888</div>
+            </div>
+        </section>
+        
+        <!-- 3. ボタン -->
+        <section class="section">
+            <h2 class="section-title">3. ボタン</h2>
+            <p class="section-subtitle">シンプルで上品なデザイン。角丸は最小限に抑え、プレミアム感を維持。</p>
+            
+            <h4 style="font-size: 14px; color: var(--eezo-navy); margin-bottom: 16px;">スタイルバリエーション</h4>
+            <div class="button-grid">
+                <button class="btn btn-primary">カートに入れる</button>
+                <button class="btn btn-secondary">詳細を見る</button>
+                <button class="btn btn-gold">今すぐ購入</button>
+            </div>
+            
+            <h4 style="font-size: 14px; color: var(--eezo-navy); margin-bottom: 16px; margin-top: 32px;">サイズバリエーション</h4>
+            <div class="button-grid">
+                <button class="btn btn-primary btn-small">小サイズ</button>
+                <button class="btn btn-primary">標準サイズ</button>
+                <button class="btn btn-primary btn-large">大サイズ</button>
+            </div>
+            
+            <table class="spec-table">
+                <tr>
+                    <th>種類</th>
+                    <th>用途</th>
+                    <th>仕様</th>
+                </tr>
+                <tr>
+                    <td>Primary</td>
+                    <td>主要アクション（カート追加、購入）</td>
+                    <td>背景: Navy / 文字: White</td>
+                </tr>
+                <tr>
+                    <td>Secondary</td>
+                    <td>副次アクション（詳細、戻る）</td>
+                    <td>背景: 透明 / 枠線: Navy</td>
+                </tr>
+                <tr>
+                    <td>Gold</td>
+                    <td>特別なCTA（限定商品、キャンペーン）</td>
+                    <td>背景: Gold / 文字: Navy</td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- 4. 商品カード -->
+        <section class="section">
+            <h2 class="section-title">4. 商品カード</h2>
+            <p class="section-subtitle">商品一覧で使用するカードコンポーネント。ホバーで浮き上がるインタラクション。</p>
+            
+            <div class="card-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <span>商品画像 4:3</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">水産物</div>
+                        <h3 class="product-name">羅臼産 天然キンキ（めんめ）</h3>
+                        <p class="product-desc">知床の海が育んだ幻の高級魚。脂のりと上品な甘みが特徴。</p>
+                        <div class="product-price">¥8,800 <span>（税込）</span></div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-badge">期間限定</div>
+                        <span>商品画像 4:3</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">畜産物</div>
+                        <h3 class="product-name">十勝 あか牛 サーロイン</h3>
+                        <p class="product-desc">赤身の旨味と程よい脂のバランス。ヘルシー志向の方に。</p>
+                        <div class="product-price">¥12,000 <span>（税込）</span></div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <span>商品画像 4:3</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">チーズ</div>
+                        <h3 class="product-name">ニセコ 熟成カマンベール</h3>
+                        <p class="product-desc">羊蹄山麓の牧場で丁寧に作られた、濃厚でクリーミーな逸品。</p>
+                        <div class="product-price">¥2,400 <span>（税込）</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="note">
+                <div class="note-title">カード仕様</div>
+                画像比率: 4:3 / カテゴリラベル: Gold / 価格: 18px Bold / ホバー時: 上に4px移動 + シャドウ追加
+            </div>
+        </section>
+        
+        <!-- 5. バナーテンプレート -->
+        <section class="section">
+            <h2 class="section-title">5. バナーテンプレート</h2>
+            <p class="section-subtitle">メインビジュアル、プロモーション、季節訴求の3パターンを基本形として用意。</p>
+            
+            <div class="banner-samples">
+                <div class="banner banner-hero">
+                    <h2>冬の北海道、海の恵み</h2>
+                    <p>12月限定 — 旬の味覚をお届けします</p>
+                    <button class="btn btn-gold">特集を見る</button>
+                </div>
+                
+                <div class="banner banner-promo">
+                    <div class="banner-promo-text">
+                        <h3>送料無料キャンペーン</h3>
+                        <p>¥10,000以上のご注文で全国送料無料</p>
+                    </div>
+                    <button class="btn btn-primary">詳しく見る</button>
+                </div>
+                
+                <div class="banner banner-seasonal">
+                    <div class="season-label">SEASONAL</div>
+                    <h3>毛蟹の季節がやってきました</h3>
+                    <p>オホーツク海の恵み、数量限定でお届け</p>
+                </div>
+            </div>
+            
+            <table class="spec-table">
+                <tr>
+                    <th>タイプ</th>
+                    <th>用途</th>
+                    <th>推奨サイズ</th>
+                </tr>
+                <tr>
+                    <td>Hero Banner</td>
+                    <td>トップページメイン / 特集ページヘッダー</td>
+                    <td>1920×600px</td>
+                </tr>
+                <tr>
+                    <td>Promo Banner</td>
+                    <td>キャンペーン告知 / 送料無料訴求</td>
+                    <td>1200×200px</td>
+                </tr>
+                <tr>
+                    <td>Seasonal Banner</td>
+                    <td>季節商品訴求 / 旬のお知らせ</td>
+                    <td>800×300px</td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- 6. フォーム要素 -->
+        <section class="section">
+            <h2 class="section-title">6. フォーム要素</h2>
+            <p class="section-subtitle">購入フロー・会員登録で使用する入力コンポーネント。</p>
+            
+            <div class="form-grid">
+                <div>
+                    <div class="form-group">
+                        <label class="form-label">お名前 <span style="color: var(--eezo-red);">*</span></label>
+                        <input type="text" class="form-input" placeholder="山田 太郎">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">メールアドレス <span style="color: var(--eezo-red);">*</span></label>
+                        <input type="email" class="form-input" placeholder="example@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">お届け先都道府県</label>
+                        <select class="form-select">
+                            <option>選択してください</option>
+                            <option>北海道</option>
+                            <option>東京都</option>
+                            <option>大阪府</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="note" style="margin-top: 0; align-self: start;">
+                    <div class="note-title">フォーム仕様</div>
+                    <ul style="font-size: 12px; margin-top: 8px; padding-left: 16px;">
+                        <li>ボーダー: 1px solid #d1d1d1</li>
+                        <li>フォーカス時: ボーダー Navy に変更</li>
+                        <li>必須項目: ラベルに赤アスタリスク</li>
+                        <li>角丸: 2px（最小限）</li>
+                        <li>パディング: 12px 16px</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 7. 写真レギュレーション -->
+        <section class="section">
+            <h2 class="section-title">7. 写真レギュレーション</h2>
+            <p class="section-subtitle">商品写真の撮影・加工基準。プレミアム感と信頼性を両立。</p>
+            
+            <div class="photo-guide">
+                <div class="photo-example">
+                    <div class="photo-box good">
+                        <span>✓</span>
+                        <span>自然光 / 余白あり</span>
+                    </div>
+                    <div class="photo-label good">推奨</div>
+                    <div class="photo-desc">自然光で撮影。背景は白または木目。商品の周囲に十分な余白を確保。</div>
+                </div>
+                
+                <div class="photo-example">
+                    <div class="photo-box good">
+                        <span>✓</span>
+                        <span>調理イメージ</span>
+                    </div>
+                    <div class="photo-label good">推奨</div>
+                    <div class="photo-desc">調理後のシズル感ある写真。食器は和モダンまたは白無地を使用。</div>
+                </div>
+                
+                <div class="photo-example">
+                    <div class="photo-box bad">
+                        <span>✗</span>
+                        <span>業務用パッケージのみ</span>
+                    </div>
+                    <div class="photo-label bad">NG</div>
+                    <div class="photo-desc">段ボールや業務用包装のみの写真。中身が見えない状態での掲載は避ける。</div>
+                </div>
+                
+                <div class="photo-example">
+                    <div class="photo-box bad">
+                        <span>✗</span>
+                        <span>過度な加工・彩度</span>
+                    </div>
+                    <div class="photo-label bad">NG</div>
+                    <div class="photo-desc">彩度を上げすぎた不自然な色味。実物と乖離する加工は信頼性を損なう。</div>
+                </div>
+            </div>
+            
+            <table class="spec-table">
+                <tr>
+                    <th>項目</th>
+                    <th>仕様</th>
+                </tr>
+                <tr>
+                    <td>画像サイズ</td>
+                    <td>最低 1200×900px（4:3）/ 推奨 2400×1800px</td>
+                </tr>
+                <tr>
+                    <td>ファイル形式</td>
+                    <td>JPG（品質80%以上）または WebP</td>
+                </tr>
+                <tr>
+                    <td>背景</td>
+                    <td>白（#FFFFFF）/ 淡いグレー / 木目テクスチャ</td>
+                </tr>
+                <tr>
+                    <td>ライティング</td>
+                    <td>自然光または自然光に近いソフトライト</td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- 8. ページレイアウト -->
+        <section class="section">
+            <h2 class="section-title">8. ページレイアウト（ワイヤーフレーム）</h2>
+            <p class="section-subtitle">主要ページの構造。エディが実装時に参照する基本レイアウト。</p>
+            
+            <h4 style="font-size: 14px; color: var(--eezo-navy); margin-bottom: 16px;">トップページ構成</h4>
+            <div class="layout-preview">
+                <div class="layout-wireframe">
+                    <div class="wf-header">
+                        <div class="wf-logo"></div>
+                        <div class="wf-nav">
+                            <div class="wf-nav-item"></div>
+                            <div class="wf-nav-item"></div>
+                            <div class="wf-nav-item"></div>
+                            <div class="wf-nav-item"></div>
+                        </div>
+                    </div>
+                    <div class="wf-hero">
+                        <div class="wf-hero-title"></div>
+                        <div class="wf-hero-subtitle"></div>
+                    </div>
+                    <div class="wf-section">
+                        <div class="wf-section-title"></div>
+                        <div class="wf-grid">
+                            <div class="wf-card">
+                                <div class="wf-card-image"></div>
+                                <div class="wf-card-content">
+                                    <div class="wf-card-text"></div>
+                                    <div class="wf-card-text"></div>
+                                </div>
+                            </div>
+                            <div class="wf-card">
+                                <div class="wf-card-image"></div>
+                                <div class="wf-card-content">
+                                    <div class="wf-card-text"></div>
+                                    <div class="wf-card-text"></div>
+                                </div>
+                            </div>
+                            <div class="wf-card">
+                                <div class="wf-card-image"></div>
+                                <div class="wf-card-content">
+                                    <div class="wf-card-text"></div>
+                                    <div class="wf-card-text"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <table class="spec-table">
+                <tr>
+                    <th>セクション</th>
+                    <th>内容</th>
+                    <th>高さ目安</th>
+                </tr>
+                <tr>
+                    <td>ヘッダー</td>
+                    <td>ロゴ / ナビ / 検索 / カート</td>
+                    <td>60-80px（固定）</td>
+                </tr>
+                <tr>
+                    <td>ヒーロー</td>
+                    <td>メインビジュアル / キャッチコピー / CTA</td>
+                    <td>500-600px</td>
+                </tr>
+                <tr>
+                    <td>商品セクション</td>
+                    <td>セクションタイトル / 商品カード3-4列</td>
+                    <td>コンテンツに応じて可変</td>
+                </tr>
+                <tr>
+                    <td>フッター</td>
+                    <td>会社情報 / リンク / SNS / コピーライト</td>
+                    <td>200-300px</td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- 納品物一覧 -->
+        <section class="section">
+            <h2 class="section-title">納品物一覧</h2>
+            
+            <table class="spec-table">
+                <tr>
+                    <th>ファイル</th>
+                    <th>形式</th>
+                    <th>用途</th>
+                </tr>
+                <tr>
+                    <td>EEZO_DesignSystem.fig</td>
+                    <td>Figma</td>
+                    <td>マスターファイル（全コンポーネント含む）</td>
+                </tr>
+                <tr>
+                    <td>EEZO_StyleGuide.pdf</td>
+                    <td>PDF</td>
+                    <td>印刷用・共有用ガイドライン</td>
+                </tr>
+                <tr>
+                    <td>EEZO_Components.sketch</td>
+                    <td>Sketch</td>
+                    <td>Sketchユーザー向け（オプション）</td>
+                </tr>
+                <tr>
+                    <td>assets/</td>
+                    <td>フォルダ</td>
+                    <td>ロゴ・アイコン・バナーテンプレート（PNG/SVG）</td>
+                </tr>
+                <tr>
+                    <td>fonts/</td>
+                    <td>フォルダ</td>
+                    <td>使用フォントファイル（またはGoogle Fontsリンク）</td>
+                </tr>
+            </table>
+        </section>
+    </div>
+</body>
+</html>
