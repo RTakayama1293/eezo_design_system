@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EEZO Design System - Navigation</title>
+  <link rel="stylesheet" href="../design_system/design_tokens.css">
+  <style>
+    .components-page {
+      padding: var(--spacing-2xl) 0;
+    }
+
+    .component-section {
+      margin-bottom: var(--spacing-3xl);
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-xl);
+      color: var(--eezo-navy);
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-sm);
+      border-bottom: 2px solid var(--eezo-gold);
+    }
+
+    .section-description {
+      color: var(--eezo-gray-600);
+      margin-bottom: var(--spacing-xl);
+      max-width: 700px;
+    }
+
+    /* Page Header */
+    .page-header {
+      background: var(--eezo-navy);
+      color: var(--eezo-white);
+      padding: var(--spacing-3xl) 0;
+      margin-bottom: var(--spacing-3xl);
+    }
+
+    .page-header h1 {
+      color: var(--eezo-white);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .page-header p {
+      color: var(--eezo-gold-light);
+      font-size: var(--font-size-lg);
+      margin: 0;
+    }
+
+    /* Component Preview */
+    .component-preview {
+      border: 1px solid var(--eezo-gray-200);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    /* Header Navigation */
+    .site-header {
+      background: var(--eezo-navy);
+      color: var(--eezo-white);
+    }
+
+    .site-header__top {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: var(--spacing-sm) 0;
+    }
+
+    .site-header__top-inner {
+      display: flex;
+      justify-content: flex-end;
+      gap: var(--spacing-lg);
+      max-width: var(--container-xl);
+      margin: 0 auto;
+      padding: 0 var(--spacing-lg);
+    }
+
+    .site-header__top-link {
+      font-size: var(--font-size-xs);
+      color: var(--eezo-gray-300);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .site-header__top-link:hover {
+      color: var(--eezo-gold-light);
+    }
+
+    .site-header__main {
+      padding: var(--spacing-md) 0;
+    }
+
+    .site-header__main-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--container-xl);
+      margin: 0 auto;
+      padding: 0 var(--spacing-lg);
+    }
+
+    .site-header__logo {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      font-family: var(--font-heading);
+      font-size: var(--font-size-xl);
+      color: var(--eezo-white);
+      text-decoration: none;
+    }
+
+    .site-header__logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--eezo-gold);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--eezo-navy);
+      font-weight: var(--font-weight-bold);
+    }
+
+    .site-header__nav {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xl);
+    }
+
+    .site-header__nav-link {
+      font-family: var(--font-body);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--eezo-white);
+      text-decoration: none;
+      padding: var(--spacing-sm) 0;
+      position: relative;
+      transition: color var(--transition-fast);
+    }
+
+    .site-header__nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--eezo-gold);
+      transition: width var(--transition-normal);
+    }
+
+    .site-header__nav-link:hover {
+      color: var(--eezo-gold);
+    }
+
+    .site-header__nav-link:hover::after {
+      width: 100%;
+    }
+
+    .site-header__nav-link--active::after {
+      width: 100%;
+    }
+
+    .site-header__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+
+    .site-header__action-btn {
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: transparent;
+      color: var(--eezo-white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      transition: background-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .site-header__action-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--eezo-gold);
+    }
+
+    .site-header__action-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    .site-header__cart-btn {
+      position: relative;
+    }
+
+    .site-header__cart-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 18px;
+      height: 18px;
+      background: var(--eezo-gold);
+      color: var(--eezo-navy);
+      font-size: 10px;
+      font-weight: var(--font-weight-bold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Category Navigation */
+    .category-nav {
+      background: var(--eezo-cream);
+      border-bottom: 1px solid var(--eezo-gray-200);
+    }
+
+    .category-nav__inner {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xl);
+      max-width: var(--container-xl);
+      margin: 0 auto;
+      padding: var(--spacing-md) var(--spacing-lg);
+      overflow-x: auto;
+    }
+
+    .category-nav__link {
+      font-family: var(--font-body);
+      font-size: var(--font-size-sm);
+      color: var(--eezo-navy);
+      text-decoration: none;
+      white-space: nowrap;
+      padding: var(--spacing-xs) 0;
+      transition: color var(--transition-fast);
+    }
+
+    .category-nav__link:hover {
+      color: var(--eezo-gold);
+    }
+
+    .category-nav__link--active {
+      color: var(--eezo-gold);
+      font-weight: var(--font-weight-medium);
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      padding: var(--spacing-md) 0;
+    }
+
+    .breadcrumb__list {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+
+    .breadcrumb__item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      font-size: var(--font-size-sm);
+      color: var(--eezo-gray-500);
+    }
+
+    .breadcrumb__item::after {
+      content: '/';
+      color: var(--eezo-gray-300);
+    }
+
+    .breadcrumb__item:last-child::after {
+      display: none;
+    }
+
+    .breadcrumb__link {
+      color: var(--eezo-gray-500);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .breadcrumb__link:hover {
+      color: var(--eezo-navy);
+    }
+
+    .breadcrumb__current {
+      color: var(--eezo-navy);
+      font-weight: var(--font-weight-medium);
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-xs);
+      padding: var(--spacing-xl) 0;
+    }
+
+    .pagination__btn {
+      min-width: 40px;
+      height: 40px;
+      padding: 0 var(--spacing-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: var(--font-size-sm);
+      color: var(--eezo-gray-600);
+      background: var(--eezo-white);
+      border: 1px solid var(--eezo-gray-300);
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .pagination__btn:hover {
+      border-color: var(--eezo-navy);
+      color: var(--eezo-navy);
+    }
+
+    .pagination__btn--active {
+      background: var(--eezo-navy);
+      border-color: var(--eezo-navy);
+      color: var(--eezo-white);
+    }
+
+    .pagination__btn--disabled {
+      color: var(--eezo-gray-300);
+      cursor: not-allowed;
+    }
+
+    .pagination__btn--disabled:hover {
+      border-color: var(--eezo-gray-300);
+      color: var(--eezo-gray-300);
+    }
+
+    .pagination__btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .pagination__ellipsis {
+      padding: 0 var(--spacing-sm);
+      color: var(--eezo-gray-400);
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--eezo-navy);
+      color: var(--eezo-white);
+      padding: var(--spacing-3xl) 0 var(--spacing-xl);
+    }
+
+    .site-footer__inner {
+      max-width: var(--container-xl);
+      margin: 0 auto;
+      padding: 0 var(--spacing-lg);
+    }
+
+    .site-footer__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: var(--spacing-2xl);
+      margin-bottom: var(--spacing-2xl);
+    }
+
+    .site-footer__brand {
+      max-width: 300px;
+    }
+
+    .site-footer__logo {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      font-family: var(--font-heading);
+      font-size: var(--font-size-xl);
+      color: var(--eezo-white);
+      text-decoration: none;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .site-footer__tagline {
+      font-size: var(--font-size-sm);
+      color: var(--eezo-gray-400);
+      line-height: var(--line-height-normal);
+    }
+
+    .site-footer__section-title {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-base);
+      color: var(--eezo-gold);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .site-footer__links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .site-footer__link {
+      display: block;
+      font-size: var(--font-size-sm);
+      color: var(--eezo-gray-300);
+      text-decoration: none;
+      padding: var(--spacing-xs) 0;
+      transition: color var(--transition-fast);
+    }
+
+    .site-footer__link:hover {
+      color: var(--eezo-white);
+    }
+
+    .site-footer__bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: var(--spacing-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-footer__copyright {
+      font-size: var(--font-size-xs);
+      color: var(--eezo-gray-500);
+    }
+
+    .site-footer__social {
+      display: flex;
+      gap: var(--spacing-md);
+    }
+
+    .site-footer__social-link {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--eezo-gray-400);
+      border: 1px solid var(--eezo-gray-600);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-fast);
+    }
+
+    .site-footer__social-link:hover {
+      color: var(--eezo-gold);
+      border-color: var(--eezo-gold);
+    }
+
+    .site-footer__social-link svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    /* Mobile Menu Toggle */
+    .mobile-menu-btn {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: transparent;
+      color: var(--eezo-white);
+      cursor: pointer;
+    }
+
+    .mobile-menu-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    /* Code Block */
+    .code-block {
+      background: var(--eezo-gray-800);
+      color: var(--eezo-gray-100);
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-family: 'Courier New', monospace;
+      font-size: var(--font-size-sm);
+      overflow-x: auto;
+      margin-top: var(--spacing-md);
+    }
+
+    @media (max-width: 1023px) {
+      .site-footer__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 767px) {
+      .site-header__nav {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .site-footer__grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+      }
+
+      .site-footer__bottom {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <h1>Navigation</h1>
+      <p>EEZO Design System - ナビゲーションコンポーネント</p>
+    </div>
+  </header>
+
+  <main class="components-page">
+    <div class="container">
+      <!-- Site Header -->
+      <section class="component-section">
+        <h2 class="section-title">Site Header</h2>
+        <p class="section-description">
+          サイト全体のヘッダーナビゲーションです。ロゴ、メインナビ、検索、お気に入り、カートを配置します。
+        </p>
+        <div class="component-preview">
+          <header class="site-header">
+            <div class="site-header__top">
+              <div class="site-header__top-inner">
+                <a href="#" class="site-header__top-link">会員登録</a>
+                <a href="#" class="site-header__top-link">ログイン</a>
+                <a href="#" class="site-header__top-link">お問い合わせ</a>
+              </div>
+            </div>
+            <div class="site-header__main">
+              <div class="site-header__main-inner">
+                <a href="#" class="site-header__logo">
+                  <span class="site-header__logo-icon">E</span>
+                  EEZO
+                </a>
+
+                <nav class="site-header__nav">
+                  <a href="#" class="site-header__nav-link site-header__nav-link--active">トップ</a>
+                  <a href="#" class="site-header__nav-link">商品一覧</a>
+                  <a href="#" class="site-header__nav-link">生産者紹介</a>
+                  <a href="#" class="site-header__nav-link">EEZOについて</a>
+                  <a href="#" class="site-header__nav-link">ご利用ガイド</a>
+                </nav>
+
+                <div class="site-header__actions">
+                  <button class="site-header__action-btn" aria-label="検索">
+                    <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                  </button>
+                  <button class="site-header__action-btn" aria-label="お気に入り">
+                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                  </button>
+                  <button class="site-header__action-btn site-header__cart-btn" aria-label="カート">
+                    <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                    <span class="site-header__cart-count">3</span>
+                  </button>
+                  <button class="mobile-menu-btn" aria-label="メニュー">
+                    <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </header>
+        </div>
+      </section>
+
+      <!-- Category Navigation -->
+      <section class="component-section">
+        <h2 class="section-title">Category Navigation</h2>
+        <p class="section-description">
+          商品カテゴリーのサブナビゲーションです。ヘッダー下に配置し、カテゴリーへの素早いアクセスを提供します。
+        </p>
+        <div class="component-preview">
+          <nav class="category-nav">
+            <div class="category-nav__inner">
+              <a href="#" class="category-nav__link category-nav__link--active">すべて</a>
+              <a href="#" class="category-nav__link">海産物</a>
+              <a href="#" class="category-nav__link">野菜・果物</a>
+              <a href="#" class="category-nav__link">乳製品</a>
+              <a href="#" class="category-nav__link">肉・加工品</a>
+              <a href="#" class="category-nav__link">スイーツ</a>
+              <a href="#" class="category-nav__link">お酒</a>
+              <a href="#" class="category-nav__link">ギフトセット</a>
+            </div>
+          </nav>
+        </div>
+      </section>
+
+      <!-- Breadcrumb -->
+      <section class="component-section">
+        <h2 class="section-title">Breadcrumb</h2>
+        <p class="section-description">
+          現在のページ位置を示すパンくずリストです。ユーザーがサイト構造を把握し、上位ページへ戻りやすくします。
+        </p>
+        <div class="component-preview" style="background: var(--eezo-white); padding: var(--spacing-md);">
+          <nav class="breadcrumb" aria-label="パンくずリスト">
+            <ol class="breadcrumb__list">
+              <li class="breadcrumb__item">
+                <a href="#" class="breadcrumb__link">トップ</a>
+              </li>
+              <li class="breadcrumb__item">
+                <a href="#" class="breadcrumb__link">海産物</a>
+              </li>
+              <li class="breadcrumb__item">
+                <a href="#" class="breadcrumb__link">かに</a>
+              </li>
+              <li class="breadcrumb__item">
+                <span class="breadcrumb__current">北海道産 毛がに（特大）</span>
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+
+      <!-- Pagination -->
+      <section class="component-section">
+        <h2 class="section-title">Pagination</h2>
+        <p class="section-description">
+          商品一覧などのページネーションです。現在ページのハイライトと前後への移動を提供します。
+        </p>
+        <div class="component-preview" style="background: var(--eezo-white); padding: var(--spacing-md);">
+          <nav class="pagination" aria-label="ページネーション">
+            <a href="#" class="pagination__btn pagination__btn--disabled" aria-disabled="true">
+              <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+            </a>
+            <a href="#" class="pagination__btn pagination__btn--active" aria-current="page">1</a>
+            <a href="#" class="pagination__btn">2</a>
+            <a href="#" class="pagination__btn">3</a>
+            <a href="#" class="pagination__btn">4</a>
+            <a href="#" class="pagination__btn">5</a>
+            <span class="pagination__ellipsis">...</span>
+            <a href="#" class="pagination__btn">12</a>
+            <a href="#" class="pagination__btn">
+              <svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
+            </a>
+          </nav>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <section class="component-section">
+        <h2 class="section-title">Site Footer</h2>
+        <p class="section-description">
+          サイト全体のフッターです。ブランド情報、各種リンク、SNSへのリンクを配置します。
+        </p>
+        <div class="component-preview">
+          <footer class="site-footer">
+            <div class="site-footer__inner">
+              <div class="site-footer__grid">
+                <div class="site-footer__brand">
+                  <a href="#" class="site-footer__logo">
+                    <span class="site-header__logo-icon">E</span>
+                    EEZO
+                  </a>
+                  <p class="site-footer__tagline">
+                    北の大地と海が育む旬を、匠の元へ。<br>
+                    EEZOは、北海道の恵みを全国へお届けする「現代の北前船」です。
+                  </p>
+                </div>
+
+                <div>
+                  <h4 class="site-footer__section-title">商品カテゴリー</h4>
+                  <ul class="site-footer__links">
+                    <li><a href="#" class="site-footer__link">海産物</a></li>
+                    <li><a href="#" class="site-footer__link">野菜・果物</a></li>
+                    <li><a href="#" class="site-footer__link">乳製品</a></li>
+                    <li><a href="#" class="site-footer__link">肉・加工品</a></li>
+                    <li><a href="#" class="site-footer__link">ギフトセット</a></li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="site-footer__section-title">ご利用ガイド</h4>
+                  <ul class="site-footer__links">
+                    <li><a href="#" class="site-footer__link">初めての方へ</a></li>
+                    <li><a href="#" class="site-footer__link">お支払い方法</a></li>
+                    <li><a href="#" class="site-footer__link">配送について</a></li>
+                    <li><a href="#" class="site-footer__link">返品・交換</a></li>
+                    <li><a href="#" class="site-footer__link">よくある質問</a></li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="site-footer__section-title">会社情報</h4>
+                  <ul class="site-footer__links">
+                    <li><a href="#" class="site-footer__link">EEZOについて</a></li>
+                    <li><a href="#" class="site-footer__link">生産者紹介</a></li>
+                    <li><a href="#" class="site-footer__link">特定商取引法</a></li>
+                    <li><a href="#" class="site-footer__link">プライバシーポリシー</a></li>
+                    <li><a href="#" class="site-footer__link">お問い合わせ</a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="site-footer__bottom">
+                <p class="site-footer__copyright">
+                  &copy; 2026 EEZO. All rights reserved.
+                </p>
+                <div class="site-footer__social">
+                  <a href="#" class="site-footer__social-link" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                  </a>
+                  <a href="#" class="site-footer__social-link" aria-label="Facebook">
+                    <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                  </a>
+                  <a href="#" class="site-footer__social-link" aria-label="LINE">
+                    <svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.105.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

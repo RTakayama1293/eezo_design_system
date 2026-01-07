@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EEZO Design System - Forms</title>
+  <link rel="stylesheet" href="../design_system/design_tokens.css">
+  <style>
+    .components-page {
+      padding: var(--spacing-2xl) 0;
+    }
+
+    .component-section {
+      margin-bottom: var(--spacing-3xl);
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-xl);
+      color: var(--eezo-navy);
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-sm);
+      border-bottom: 2px solid var(--eezo-gold);
+    }
+
+    .section-description {
+      color: var(--eezo-gray-600);
+      margin-bottom: var(--spacing-xl);
+      max-width: 700px;
+    }
+
+    /* Page Header */
+    .page-header {
+      background: var(--eezo-navy);
+      color: var(--eezo-white);
+      padding: var(--spacing-3xl) 0;
+      margin-bottom: var(--spacing-3xl);
+    }
+
+    .page-header h1 {
+      color: var(--eezo-white);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .page-header p {
+      color: var(--eezo-gold-light);
+      font-size: var(--font-size-lg);
+      margin: 0;
+    }
+
+    /* Form Showcase */
+    .form-showcase {
+      max-width: 500px;
+      padding: var(--spacing-xl);
+      background: var(--eezo-gray-100);
+      border-radius: var(--radius-md);
+    }
+
+    .form-showcase--wide {
+      max-width: 700px;
+    }
+
+    /* Form Group */
+    .form-group {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .form-label {
+      display: block;
+      font-family: var(--font-body);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--eezo-navy);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .form-label--required::after {
+      content: ' *';
+      color: var(--eezo-red);
+    }
+
+    .form-hint {
+      display: block;
+      font-size: var(--font-size-xs);
+      color: var(--eezo-gray-500);
+      margin-top: var(--spacing-xs);
+    }
+
+    /* Text Input */
+    .form-input {
+      width: 100%;
+      padding: var(--spacing-md);
+      font-family: var(--font-body);
+      font-size: var(--font-size-base);
+      color: var(--eezo-gray-700);
+      background-color: var(--eezo-white);
+      border: 1px solid var(--eezo-gray-300);
+      border-radius: var(--radius-sm);
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--eezo-gold);
+      box-shadow: 0 0 0 3px rgba(201, 169, 98, 0.2);
+    }
+
+    .form-input:disabled {
+      background-color: var(--eezo-gray-100);
+      color: var(--eezo-gray-400);
+      cursor: not-allowed;
+    }
+
+    .form-input::placeholder {
+      color: var(--eezo-gray-400);
+    }
+
+    .form-input--error {
+      border-color: var(--eezo-red);
+    }
+
+    .form-input--error:focus {
+      box-shadow: 0 0 0 3px rgba(196, 69, 54, 0.2);
+    }
+
+    .form-input--success {
+      border-color: var(--eezo-green);
+    }
+
+    /* Textarea */
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    /* Select */
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%234a4a4a'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right var(--spacing-md) center;
+      padding-right: var(--spacing-2xl);
+    }
+
+    /* Checkbox & Radio */
+    .form-check {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-sm);
+      cursor: pointer;
+    }
+
+    .form-check-input {
+      width: 20px;
+      height: 20px;
+      margin: 0;
+      flex-shrink: 0;
+      cursor: pointer;
+      accent-color: var(--eezo-navy);
+    }
+
+    .form-check-label {
+      font-size: var(--font-size-base);
+      color: var(--eezo-gray-700);
+      line-height: 1.4;
+    }
+
+    .form-check-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    .form-check-group--inline {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: var(--spacing-lg);
+    }
+
+    /* Quantity Input */
+    .form-quantity {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--eezo-gray-300);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+
+    .form-quantity__btn {
+      width: 44px;
+      height: 44px;
+      border: none;
+      background: var(--eezo-white);
+      color: var(--eezo-navy);
+      font-size: var(--font-size-lg);
+      cursor: pointer;
+      transition: background-color var(--transition-fast);
+    }
+
+    .form-quantity__btn:hover {
+      background: var(--eezo-gray-100);
+    }
+
+    .form-quantity__btn:disabled {
+      color: var(--eezo-gray-300);
+      cursor: not-allowed;
+    }
+
+    .form-quantity__input {
+      width: 60px;
+      height: 44px;
+      border: none;
+      border-left: 1px solid var(--eezo-gray-300);
+      border-right: 1px solid var(--eezo-gray-300);
+      text-align: center;
+      font-family: var(--font-body);
+      font-size: var(--font-size-base);
+      color: var(--eezo-navy);
+    }
+
+    .form-quantity__input:focus {
+      outline: none;
+    }
+
+    /* Error Message */
+    .form-error {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      margin-top: var(--spacing-xs);
+      font-size: var(--font-size-sm);
+      color: var(--eezo-red);
+    }
+
+    .form-error svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* Success Message */
+    .form-success {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      margin-top: var(--spacing-xs);
+      font-size: var(--font-size-sm);
+      color: var(--eezo-green);
+    }
+
+    .form-success svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* Button */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md) var(--spacing-xl);
+      font-family: var(--font-body);
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-medium);
+      text-decoration: none;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-normal);
+    }
+
+    .btn-primary {
+      background-color: var(--eezo-navy);
+      color: var(--eezo-white);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--eezo-navy-light);
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    /* Search Input */
+    .form-search {
+      position: relative;
+    }
+
+    .form-search__input {
+      padding-left: var(--spacing-2xl);
+    }
+
+    .form-search__icon {
+      position: absolute;
+      left: var(--spacing-md);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      fill: var(--eezo-gray-400);
+    }
+
+    /* Form Row */
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-md);
+    }
+
+    /* Fieldset */
+    .form-fieldset {
+      border: 1px solid var(--eezo-gray-200);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .form-fieldset__legend {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-lg);
+      color: var(--eezo-navy);
+      padding: 0 var(--spacing-sm);
+    }
+
+    /* Code Block */
+    .code-block {
+      background: var(--eezo-gray-800);
+      color: var(--eezo-gray-100);
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-family: 'Courier New', monospace;
+      font-size: var(--font-size-sm);
+      overflow-x: auto;
+      margin-top: var(--spacing-md);
+    }
+
+    .code-block code {
+      color: var(--eezo-gold-light);
+    }
+
+    @media (max-width: 767px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .form-check-group--inline {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <h1>Forms</h1>
+      <p>EEZO Design System - フォーム要素</p>
+    </div>
+  </header>
+
+  <main class="components-page">
+    <div class="container">
+      <!-- Text Input -->
+      <section class="component-section">
+        <h2 class="section-title">Text Input</h2>
+        <p class="section-description">
+          テキスト入力フィールドです。ラベル、プレースホルダー、ヒントテキストを組み合わせて使用します。
+        </p>
+        <div class="form-showcase">
+          <div class="form-group">
+            <label class="form-label form-label--required" for="name">お名前</label>
+            <input type="text" class="form-input" id="name" placeholder="山田 太郎">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">メールアドレス</label>
+            <input type="email" class="form-input" id="email" placeholder="example@eezo.jp">
+            <span class="form-hint">注文確認メールをお送りします</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="disabled">無効状態</label>
+            <input type="text" class="form-input" id="disabled" value="編集できません" disabled>
+          </div>
+        </div>
+      </section>
+
+      <!-- Input States -->
+      <section class="component-section">
+        <h2 class="section-title">Input States</h2>
+        <p class="section-description">
+          入力フィールドのバリデーション状態です。エラーと成功の状態を視覚的にフィードバックします。
+        </p>
+        <div class="form-showcase">
+          <div class="form-group">
+            <label class="form-label form-label--required" for="error-input">メールアドレス（エラー）</label>
+            <input type="email" class="form-input form-input--error" id="error-input" value="invalid-email">
+            <div class="form-error">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+              正しいメールアドレスを入力してください
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="success-input">メールアドレス（成功）</label>
+            <input type="email" class="form-input form-input--success" id="success-input" value="user@eezo.jp">
+            <div class="form-success">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              有効なメールアドレスです
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Textarea -->
+      <section class="component-section">
+        <h2 class="section-title">Textarea</h2>
+        <p class="section-description">
+          複数行のテキスト入力です。お問い合わせ内容やコメントの入力に使用します。
+        </p>
+        <div class="form-showcase">
+          <div class="form-group">
+            <label class="form-label" for="message">お問い合わせ内容</label>
+            <textarea class="form-input form-textarea" id="message" placeholder="ご質問・ご要望をお書きください"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- Select -->
+      <section class="component-section">
+        <h2 class="section-title">Select</h2>
+        <p class="section-description">
+          ドロップダウン選択です。配送先や支払い方法の選択などに使用します。
+        </p>
+        <div class="form-showcase">
+          <div class="form-group">
+            <label class="form-label form-label--required" for="prefecture">都道府県</label>
+            <select class="form-input form-select" id="prefecture">
+              <option value="">選択してください</option>
+              <option value="hokkaido">北海道</option>
+              <option value="aomori">青森県</option>
+              <option value="iwate">岩手県</option>
+              <option value="miyagi">宮城県</option>
+              <option value="akita">秋田県</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- Checkbox -->
+      <section class="component-section">
+        <h2 class="section-title">Checkbox</h2>
+        <p class="section-description">
+          複数選択が可能なチェックボックスです。利用規約の同意やオプション選択に使用します。
+        </p>
+        <div class="form-showcase">
+          <div class="form-group">
+            <label class="form-label">ご希望のオプション</label>
+            <div class="form-check-group">
+              <label class="form-check">
+                <input type="checkbox" class="form-check-input">
+                <span class="form-check-label">のし紙をつける</span>
+              </label>
+              <label class="form-check">
+                <input type="checkbox" class="form-check-input" checked>
+                <span class="form-check-label">ギフト包装をする</span>
+              </label>
+              <label class="form-check">
+                <input type="checkbox" class="form-check-input">
+                <span class="form-check-label">メッセージカードを添える</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-check">
+              <input type="checkbox" class="form-check-input">
+              <span class="form-check-label">
+                <a href="#" style="color: var(--eezo-navy); text-decoration: underline;">利用規約</a>に同意する
+              </span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Radio -->
+      <section class="component-section">
+        <h2 class="section-title">Radio Button</h2>
+        <p class="section-description">
+          単一選択のラジオボタンです。配送方法や支払い方法の選択に使用します。
+        </p>
+        <div class="form-showcase">
+          <div class="form-group">
+            <label class="form-label form-label--required">配送方法</label>
+            <div class="form-check-group">
+              <label class="form-check">
+                <input type="radio" class="form-check-input" name="shipping" checked>
+                <span class="form-check-label">通常配送（3-5営業日）</span>
+              </label>
+              <label class="form-check">
+                <input type="radio" class="form-check-input" name="shipping">
+                <span class="form-check-label">クール便（3-5営業日）+330円</span>
+              </label>
+              <label class="form-check">
+                <input type="radio" class="form-check-input" name="shipping">
+                <span class="form-check-label">お届け日指定（希望日時を指定）+550円</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">お支払い方法</label>
+            <div class="form-check-group form-check-group--inline">
+              <label class="form-check">
+                <input type="radio" class="form-check-input" name="payment" checked>
+                <span class="form-check-label">クレジットカード</span>
+              </label>
+              <label class="form-check">
+                <input type="radio" class="form-check-input" name="payment">
+                <span class="form-check-label">銀行振込</span>
+              </label>
+              <label class="form-check">
+                <input type="radio" class="form-check-input" name="payment">
+                <span class="form-check-label">代金引換</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quantity Input -->
+      <section class="component-section">
+        <h2 class="section-title">Quantity Input</h2>
+        <p class="section-description">
+          数量選択の専用コンポーネントです。商品詳細ページやカートで使用します。
+        </p>
+        <div class="form-showcase">
+          <div class="form-group">
+            <label class="form-label">数量</label>
+            <div class="form-quantity">
+              <button type="button" class="form-quantity__btn" aria-label="数量を減らす">−</button>
+              <input type="number" class="form-quantity__input" value="1" min="1" max="99">
+              <button type="button" class="form-quantity__btn" aria-label="数量を増やす">+</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search Input -->
+      <section class="component-section">
+        <h2 class="section-title">Search Input</h2>
+        <p class="section-description">
+          検索用の入力フィールドです。アイコン付きで検索機能であることを明示します。
+        </p>
+        <div class="form-showcase">
+          <div class="form-group form-search">
+            <svg class="form-search__icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input type="search" class="form-input form-search__input" placeholder="商品を検索...">
+          </div>
+        </div>
+      </section>
+
+      <!-- Form Layout -->
+      <section class="component-section">
+        <h2 class="section-title">Form Layout</h2>
+        <p class="section-description">
+          複数のフィールドを組み合わせたフォームレイアウトの例です。
+        </p>
+        <div class="form-showcase form-showcase--wide">
+          <fieldset class="form-fieldset">
+            <legend class="form-fieldset__legend">お届け先</legend>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label form-label--required" for="last-name">姓</label>
+                <input type="text" class="form-input" id="last-name" placeholder="山田">
+              </div>
+              <div class="form-group">
+                <label class="form-label form-label--required" for="first-name">名</label>
+                <input type="text" class="form-input" id="first-name" placeholder="太郎">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label form-label--required" for="postal">郵便番号</label>
+                <input type="text" class="form-input" id="postal" placeholder="123-4567">
+              </div>
+              <div class="form-group">
+                <label class="form-label form-label--required" for="pref">都道府県</label>
+                <select class="form-input form-select" id="pref">
+                  <option value="">選択してください</option>
+                  <option value="hokkaido">北海道</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label form-label--required" for="address1">市区町村・番地</label>
+              <input type="text" class="form-input" id="address1" placeholder="札幌市中央区北1条西2丁目">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="address2">建物名・部屋番号</label>
+              <input type="text" class="form-input" id="address2" placeholder="〇〇マンション 101号室">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label form-label--required" for="tel">電話番号</label>
+              <input type="tel" class="form-input" id="tel" placeholder="090-1234-5678">
+              <span class="form-hint">配送に関するご連絡に使用します</span>
+            </div>
+          </fieldset>
+
+          <button type="submit" class="btn btn-primary btn-full">次へ進む</button>
+        </div>
+      </section>
+
+      <!-- Usage Code -->
+      <section class="component-section">
+        <h2 class="section-title">Usage</h2>
+        <div class="code-block">
+          <code>&lt;div class="form-group"&gt;
+  &lt;label class="form-label form-label--required" for="name"&gt;お名前&lt;/label&gt;
+  &lt;input type="text" class="form-input" id="name" placeholder="山田 太郎"&gt;
+  &lt;span class="form-hint"&gt;ヒントテキスト&lt;/span&gt;
+&lt;/div&gt;</code>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

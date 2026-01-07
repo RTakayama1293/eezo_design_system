@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EEZO Design System - Colors</title>
+  <link rel="stylesheet" href="design_tokens.css">
+  <style>
+    .color-page {
+      padding: var(--spacing-2xl) 0;
+    }
+
+    .color-section {
+      margin-bottom: var(--spacing-3xl);
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-xl);
+      color: var(--eezo-navy);
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-sm);
+      border-bottom: 2px solid var(--eezo-gold);
+    }
+
+    .section-description {
+      color: var(--eezo-gray-600);
+      margin-bottom: var(--spacing-xl);
+      max-width: 600px;
+    }
+
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--spacing-lg);
+    }
+
+    .color-card {
+      background: var(--eezo-white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    }
+
+    .color-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .color-swatch {
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .color-swatch-text {
+      font-family: var(--font-body);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      background: rgba(255,255,255,0.9);
+      border-radius: var(--radius-sm);
+    }
+
+    .color-info {
+      padding: var(--spacing-md);
+    }
+
+    .color-name {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-medium);
+      color: var(--eezo-navy);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .color-values {
+      font-family: var(--font-body);
+      font-size: var(--font-size-xs);
+      color: var(--eezo-gray-500);
+    }
+
+    .color-usage {
+      font-size: var(--font-size-xs);
+      color: var(--eezo-gray-600);
+      margin-top: var(--spacing-sm);
+      padding-top: var(--spacing-sm);
+      border-top: 1px solid var(--eezo-gray-200);
+    }
+
+    /* Primary Colors have larger swatches */
+    .color-grid--primary .color-swatch {
+      height: 160px;
+    }
+
+    /* Page Header */
+    .page-header {
+      background: var(--eezo-navy);
+      color: var(--eezo-white);
+      padding: var(--spacing-3xl) 0;
+      margin-bottom: var(--spacing-3xl);
+    }
+
+    .page-header h1 {
+      color: var(--eezo-white);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .page-header p {
+      color: var(--eezo-gold-light);
+      font-size: var(--font-size-lg);
+      margin: 0;
+    }
+
+    /* Color Combinations */
+    .color-combinations {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-xl);
+    }
+
+    .combination-card {
+      border: 1px solid var(--eezo-gray-200);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .combination-preview {
+      padding: var(--spacing-xl);
+      text-align: center;
+    }
+
+    .combination-preview h3 {
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .combination-info {
+      padding: var(--spacing-md);
+      background: var(--eezo-gray-100);
+      font-size: var(--font-size-sm);
+    }
+
+    .combination-info code {
+      background: var(--eezo-white);
+      padding: var(--spacing-xs);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-xs);
+    }
+
+    @media (max-width: 767px) {
+      .color-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+      }
+
+      .color-swatch {
+        height: 80px;
+      }
+
+      .color-grid--primary .color-swatch {
+        height: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <h1>Color Palette</h1>
+      <p>EEZO Design System - カラーパレット</p>
+    </div>
+  </header>
+
+  <main class="color-page">
+    <div class="container">
+      <!-- Primary Colors -->
+      <section class="color-section">
+        <h2 class="section-title">Primary Colors</h2>
+        <p class="section-description">
+          EEZOのブランドを表現する主要カラー。Navy（格式・信頼）とGold（プレミアム感・温もり）の組み合わせで、
+          高品質な北海道食材を扱うブランドとしての品格を表現します。
+        </p>
+        <div class="color-grid color-grid--primary">
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: var(--eezo-navy);">
+              <span class="color-swatch-text">Aa</span>
+            </div>
+            <div class="color-info">
+              <div class="color-name">EEZO Navy</div>
+              <div class="color-values">
+                HEX: #1a2a3a<br>
+                CSS: var(--eezo-navy)
+              </div>
+              <div class="color-usage">メインカラー、見出し、ヘッダー背景</div>
+            </div>
+          </div>
+
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: var(--eezo-navy-light);">
+              <span class="color-swatch-text">Aa</span>
+            </div>
+            <div class="color-info">
+              <div class="color-name">EEZO Navy Light</div>
+              <div class="color-values">
+                HEX: #2d4a5e<br>
+                CSS: var(--eezo-navy-light)
+              </div>
+              <div class="color-usage">ホバー状態、サブ要素</div>
+            </div>
+          </div>
+
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: var(--eezo-gold);">
+              <span class="color-swatch-text">Aa</span>
+            </div>
+            <div class="color-info">
+              <div class="color-name">EEZO Gold</div>
+              <div class="color-values">
+                HEX: #c9a962<br>
+                CSS: var(--eezo-gold)
+              </div>
+              <div class="color-usage">アクセント、CTA、強調、装飾</div>
+            </div>
+          </div>
+
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: var(--eezo-gold-light);">
+              <span class="color-swatch-text" style="color: var(--eezo-navy);">Aa</span>
+            </div>
+            <div class="color-info">
+              <div class="color-name">EEZO Gold Light</div>
+              <div class="color-values">
+                HEX: #e5d4a8<br>
+                CSS: var(--eezo-gold-light)
+              </div>
+              <div class="color-usage">背景アクセント、ホバー状態</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Neutral Colors -->
+      <section class="color-section">
+        <h2 class="section-title">Neutral Colors</h2>
+        <p class="section-description">
+          背景、テキスト、ボーダーなど、UIの基盤となるニュートラルカラー。
+          温かみのあるクリーム系と、クリーンなグレー系を組み合わせています。
+        </p>
+        <div class="color-grid">
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: var(--eezo-cream); border: 1px solid var(--eezo-gray-200);">
+              <span class="color-swatch-text" style="color: var(--eezo-navy);">Aa</span>
+            </div>
+            <div class="color-info">
+              <div class="color-name">EEZO Cream</div>
+              <div class="color-values">
+                HEX: #f8f5ef<br>
+                CSS: var(--eezo-cream)
+              </div>
+              <div class="color-usage">背景、セクション区切り</div>
+            </div>
+          </div>
+
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: var(--eezo-white); border: 1px solid var(--eezo-gray-200);">
+              <span class="color-swatch-text" style="color: var(--eezo-navy);">Aa</span>
+            </div>
+            <div class="color-info">
+              <div class="color-name">White</div>
+              <div class="color-values">
+                HEX: #ffffff<br>
+                CSS: var(--eezo-white)
+              </div>
+              <div class="color-usage">カード背景、コンテンツ背景</div>
+            </div>
+          </div>
+
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: var(--eezo-gray-100); border: 1px solid var(--eezo-gray-200);">
+              <span class="color-swatch-text" style="color: var(--eezo-navy);">Aa</span>
+            </div>
+            <div class="color-info">
+              <div class="color-name">Gray 100</div>
+              <div class="color-values">
+                HEX: #f5f5f5<br>
+                CSS: var(--eezo-gray-100)
+              </div>
+              <div class="color-usage">薄い背景</div>
+            </div>
+          </div>
+
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: var(--eezo-gray-300);">
+              <span class="color-swatch-text" style="color: var(--eezo-navy);">Aa</span>
+            </div>
+            <div class="color-info">
+              <div class="color-name">Gray 300</div>
+              <div class="color-values">
+                HEX: #d1d1d1<br>
+                CSS: var(--eezo-gray-300)
+              </div>
+              <div class="color-usage">ボーダー、区切り線</div>
+            </div>
+          </div>
+
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: var(--eezo-gray-500);">
+              <span class="color-swatch-text">Aa</span>
+            </div>
+            <div class="color-info">
+              <div class="color-name">Gray 500</div>
+              <div class="color-values">
+                HEX: #888888<br>
+                CSS: var(--eezo-gray-500)
+              </div>
+              <div class="color-usage">補足テキスト</div>
+            </div>
+          </div>
+
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: var(--eezo-gray-700);">
+              <span class="color-swatch-text">Aa</span>
+            </div>
+            <div class="color-info">
+              <div class="color-name">Gray 700</div>
+              <div class="color-values">
+                HEX: #4a4a4a<br>
+                CSS: var(--eezo-gray-700)
+              </div>
+              <div class="color-usage">本文テキスト</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Semantic Colors -->
+      <section class="color-section">
+        <h2 class="section-title">Semantic Colors</h2>
+        <p class="section-description">
+          特定の意味を持つセマンティックカラー。エラー、成功、限定などの状態を表現します。
+          プレミアム感を損なわないよう、控えめに使用してください。
+        </p>
+        <div class="color-grid">
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: var(--eezo-red);">
+              <span class="color-swatch-text">Aa</span>
+            </div>
+            <div class="color-info">
+              <div class="color-name">Red</div>
+              <div class="color-values">
+                HEX: #c44536<br>
+                CSS: var(--eezo-red)
+              </div>
+              <div class="color-usage">限定表示、エラー、セール（控えめに）</div>
+            </div>
+          </div>
+
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: var(--eezo-green);">
+              <span class="color-swatch-text">Aa</span>
+            </div>
+            <div class="color-info">
+              <div class="color-name">Green</div>
+              <div class="color-values">
+                HEX: #3d7c47<br>
+                CSS: var(--eezo-green)
+              </div>
+              <div class="color-usage">成功、在庫あり</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Color Combinations -->
+      <section class="color-section">
+        <h2 class="section-title">Recommended Combinations</h2>
+        <p class="section-description">
+          ブランドの一貫性を保つために推奨される色の組み合わせ例です。
+        </p>
+        <div class="color-combinations">
+          <div class="combination-card">
+            <div class="combination-preview" style="background: var(--eezo-navy); color: var(--eezo-white);">
+              <h3 style="color: var(--eezo-white);">ヘッダー・フッター</h3>
+              <p style="color: var(--eezo-gold-light);">Navy背景 + White/Gold テキスト</p>
+            </div>
+            <div class="combination-info">
+              背景: <code>var(--eezo-navy)</code><br>
+              テキスト: <code>var(--eezo-white)</code><br>
+              アクセント: <code>var(--eezo-gold)</code>
+            </div>
+          </div>
+
+          <div class="combination-card">
+            <div class="combination-preview" style="background: var(--eezo-cream);">
+              <h3 style="color: var(--eezo-navy);">コンテンツセクション</h3>
+              <p style="color: var(--eezo-gray-700);">Cream背景 + Navy見出し</p>
+            </div>
+            <div class="combination-info">
+              背景: <code>var(--eezo-cream)</code><br>
+              見出し: <code>var(--eezo-navy)</code><br>
+              本文: <code>var(--eezo-gray-700)</code>
+            </div>
+          </div>
+
+          <div class="combination-card">
+            <div class="combination-preview" style="background: var(--eezo-white); border: 1px solid var(--eezo-gray-200);">
+              <h3 style="color: var(--eezo-navy);">商品カード</h3>
+              <p style="color: var(--eezo-gray-700);">White背景 + 控えめなシャドウ</p>
+            </div>
+            <div class="combination-info">
+              背景: <code>var(--eezo-white)</code><br>
+              ボーダー: <code>var(--eezo-gray-200)</code><br>
+              シャドウ: <code>var(--shadow-md)</code>
+            </div>
+          </div>
+
+          <div class="combination-card">
+            <div class="combination-preview" style="background: var(--eezo-gold);">
+              <h3 style="color: var(--eezo-navy);">CTAボタン</h3>
+              <p style="color: var(--eezo-navy);">Gold背景 + Navy テキスト</p>
+            </div>
+            <div class="combination-info">
+              背景: <code>var(--eezo-gold)</code><br>
+              テキスト: <code>var(--eezo-navy)</code><br>
+              ホバー: <code>var(--eezo-gold-dark)</code>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Usage Guidelines -->
+      <section class="color-section">
+        <h2 class="section-title">Usage Guidelines</h2>
+        <div style="background: var(--eezo-gray-100); padding: var(--spacing-xl); border-radius: var(--radius-md);">
+          <h3 style="color: var(--eezo-navy); margin-bottom: var(--spacing-md);">推奨</h3>
+          <ul style="color: var(--eezo-gray-700); margin-bottom: var(--spacing-xl);">
+            <li>色数は3色以内（Navy/Gold/Cream + グレー系）に抑える</li>
+            <li>余白を十分に取り、色で空間を埋めすぎない</li>
+            <li>アクセントカラー（Gold）は控えめに、強調したい箇所のみに使用</li>
+            <li>テキストの可読性を最優先に考える</li>
+          </ul>
+
+          <h3 style="color: var(--eezo-red); margin-bottom: var(--spacing-md);">禁止</h3>
+          <ul style="color: var(--eezo-gray-700);">
+            <li>彩度の高すぎる色の使用</li>
+            <li>赤字強調やフラッシュセールなど安売り感を与える表現</li>
+            <li>過度なグラデーションの使用</li>
+            <li>4色以上の同時使用</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
